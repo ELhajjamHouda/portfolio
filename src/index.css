@@ -5,8 +5,7 @@
 
 /* Theme tokens: Outfit body, JetBrains for mono — Syne via `.font-display` utility */
 @theme {
-  --font-sans:
-    'Outfit', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Outfit', ui-sans-serif, system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 }
 

@@ -7,8 +7,10 @@ import { profile } from '@/data/portfolio'
  * Hero: copy left, hanging ID badge right — responsive stack with badge first on small screens.
  */
 export function Hero() {
-  const firstName = profile.givenName ?? (profile.name.trim().split(/\s+/)[0] ?? profile.name)
-  const lastName = profile.familyName ?? profile.name.trim().split(/\s+/).slice(1).join(' ')
+  const nameParts = profile.name.trim().split(/\s+/).filter(Boolean)
+  const firstName =
+    profile.givenName ?? (nameParts.length > 0 ? nameParts[0] : profile.name)
+  const lastName = profile.familyName ?? nameParts.slice(1).join(' ')
 
   return (
     <section
@@ -19,7 +21,10 @@ export function Hero() {
         className="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(251,191,36,0.14),transparent),radial-gradient(ellipse_60%_40%_at_100%_0%,rgba(244,114,182,0.1),transparent)] dark:bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(251,191,36,0.12),transparent),radial-gradient(ellipse_60%_40%_at_100%_0%,rgba(244,114,182,0.08),transparent)]"
         aria-hidden
       />
-      <div className="bg-grid pointer-events-none absolute inset-0 -z-10 opacity-60 dark:opacity-50" aria-hidden />
+      <div
+        className="bg-grid pointer-events-none absolute inset-0 -z-10 opacity-60 dark:opacity-50"
+        aria-hidden
+      />
 
       <div className="relative mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center gap-12 lg:grid lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-center lg:gap-10 xl:gap-14">

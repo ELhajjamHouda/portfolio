@@ -20,7 +20,7 @@ function BadgeAvatarFallback({ name }: { name: string }) {
   const parts = name.split(/\s+/).filter(Boolean)
   const initials = parts
     .slice(0, 2)
-    .map((p) => p[0]?.toUpperCase() ?? '')
+    .map((p) => p[0].toUpperCase())
     .join('')
 
   return (
@@ -47,11 +47,21 @@ export function HangingBadge({
   const [imgError, setImgError] = useState(false)
   const showImg = Boolean(imageSrc) && !imgError
 
-  const handleImgError = useCallback(() => setImgError(true), [])
+  const handleImgError = useCallback(() => {
+    setImgError(true)
+  }, [])
 
   const parts = name.trim().split(/\s+/).filter(Boolean)
-  const givenName = givenNameProp ?? parts[0] ?? name
-  const familyName = familyNameProp ?? parts.slice(1).join(' ')
+  const givenName =
+    givenNameProp !== undefined && givenNameProp !== ''
+      ? givenNameProp
+      : parts.length > 0
+        ? parts[0]
+        : name
+  const familyName =
+    familyNameProp !== undefined && familyNameProp !== ''
+      ? familyNameProp
+      : parts.slice(1).join(' ')
 
   return (
     <div
@@ -116,9 +126,7 @@ export function HangingBadge({
           whileHover={reduceMotion ? undefined : { scale: 1.02 }}
           transition={{ type: 'spring', stiffness: 420, damping: 24 }}
         >
-          <div
-            className="relative overflow-hidden rounded-[1.25rem] border-4 border-stone-800 bg-gradient-to-b from-stone-50 to-stone-200 p-1 shadow-[12px_16px_0_rgba(12,10,9,0.85),0_24px_48px_-12px_rgba(0,0,0,0.55)] dark:border-stone-700"
-          >
+          <div className="relative overflow-hidden rounded-[1.25rem] border-4 border-stone-800 bg-gradient-to-b from-stone-50 to-stone-200 p-1 shadow-[12px_16px_0_rgba(12,10,9,0.85),0_24px_48px_-12px_rgba(0,0,0,0.55)] dark:border-stone-700">
             <div className="flex items-center justify-between gap-2 rounded-t-lg bg-stone-900 px-3 py-2">
               <span className="font-mono text-[10px] font-medium uppercase tracking-[0.35em] text-amber-100/95">
                 Pass

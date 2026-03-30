@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { useTheme } from '@/context/ThemeContext'
+import { useTheme } from '@/hooks/useTheme'
 
 /**
  * Bouton pour basculer entre mode clair et sombre (icône lune / soleil).

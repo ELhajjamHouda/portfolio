@@ -18,11 +18,7 @@ export const profile: Profile = {
 
 Diplômée de l'École marocaine des sciences de l'ingénieur (EMSI), Casablanca — parcours orienté développement full stack (Java / Spring, React, Angular) et bases de données relationnelles.`,
 
-  languages: [
-    'Arabe (courant)',
-    'Français (intermédiaire)',
-    'Anglais (notions de base)',
-  ],
+  languages: ['Arabe (courant)', 'Français (intermédiaire)', 'Anglais (notions de base)'],
 
   certifications: [
     'Développement de microservices Java évolutifs — Spring Boot & Spring Cloud',

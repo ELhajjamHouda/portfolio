@@ -15,7 +15,9 @@ export function About() {
               eyebrow="À propos"
               title="Ingénierie logicielle orientée résultats"
               description={
-                <p className="whitespace-pre-line text-zinc-600 dark:text-zinc-400">{profile.bio}</p>
+                <p className="whitespace-pre-line text-zinc-600 dark:text-zinc-400">
+                  {profile.bio}
+                </p>
               }
             />
 
@@ -100,7 +102,7 @@ export function About() {
                 {profile.experience.map((job, i) => {
                   const isLast = i === profile.experience.length - 1
                   return (
-                    <li key={`${job.company}-${job.role}-${i}`} className="flex gap-4">
+                    <li key={`${job.company}-${job.role}-${String(i)}`} className="flex gap-4">
                       <div className="flex flex-col items-center pt-1">
                         <div
                           className="h-3 w-3 shrink-0 rounded-full border-2 border-white bg-cyan-500 shadow-[0_0_12px_rgba(34,211,238,0.5)] dark:border-zinc-950"

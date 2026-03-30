@@ -20,23 +20,29 @@ export function Navbar() {
 
   const monogram = useMemo(() => {
     if (profile.givenName && profile.familyName) {
-      return `${profile.givenName[0] ?? ''}${profile.familyName[0] ?? ''}`.toUpperCase()
+      return `${profile.givenName[0]}${profile.familyName[0]}`.toUpperCase()
     }
     const parts = profile.name.split(/\s+/).filter(Boolean)
     return parts
       .slice(0, 2)
-      .map((p) => p[0]?.toUpperCase() ?? '')
+      .map((p) => p[0].toUpperCase())
       .join('')
   }, [])
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24)
+    const onScroll = () => {
+      setScrolled(window.scrollY > 24)
+    }
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+    }
   }, [])
 
-  const close = useCallback(() => setOpen(false), [])
+  const close = useCallback(() => {
+    setOpen(false)
+  }, [])
 
   useEffect(() => {
     if (!open) return
@@ -44,7 +50,9 @@ export function Navbar() {
       if (e.key === 'Escape') close()
     }
     window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
+    return () => {
+      window.removeEventListener('keydown', onKey)
+    }
   }, [open, close])
 
   const headerBg = scrolled
@@ -82,7 +90,9 @@ export function Navbar() {
             className="inline-flex items-center justify-center rounded-lg border border-stone-300/90 bg-white/80 p-2 text-zinc-800 dark:border-white/10 dark:bg-white/5 dark:text-zinc-200 md:hidden"
             aria-expanded={open}
             aria-controls="mobile-menu"
-            onClick={() => setOpen((v) => !v)}
+            onClick={() => {
+              setOpen((v) => !v)
+            }}
           >
             <span className="sr-only">Toggle menu</span>
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden>
