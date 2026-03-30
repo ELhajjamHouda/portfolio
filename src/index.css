@@ -1,0 +1,64 @@
+@import 'tailwindcss';
+
+/* Variante `dark:` activée par la classe `dark` sur <html> */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Theme tokens: Outfit body, JetBrains for mono — Syne via `.font-display` utility */
+@theme {
+  --font-sans:
+    'Outfit', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+/*
+  Global base styles: smooth scrolling, font stack from Google Fonts (see index.html).
+ */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply min-h-svh bg-stone-100 font-sans text-zinc-800 antialiased transition-colors duration-300 dark:bg-zinc-950 dark:text-zinc-300;
+  }
+
+  ::selection {
+    @apply bg-amber-200/60 text-zinc-900 dark:bg-cyan-500/30 dark:text-white;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: 'Syne', ui-sans-serif, sans-serif;
+  }
+}
+
+/* Grille : lignes plus visibles en clair */
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(24, 24, 27, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(24, 24, 27, 0.07) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 20%, transparent 70%);
+}
+
+.dark .bg-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+}
+
+/* Halos d’ambiance (hero) — surchargés par les divs du Hero si besoin */
+.bg-glow {
+  background:
+    radial-gradient(ellipse 600px 400px at 20% -10%, rgba(251, 191, 36, 0.12), transparent),
+    radial-gradient(ellipse 500px 350px at 90% 10%, rgba(244, 114, 182, 0.08), transparent),
+    radial-gradient(ellipse 400px 300px at 50% 100%, rgba(245, 158, 11, 0.06), transparent);
+}
+
+.dark .bg-glow {
+  background:
+    radial-gradient(ellipse 600px 400px at 20% -10%, rgba(56, 189, 248, 0.15), transparent),
+    radial-gradient(ellipse 500px 350px at 90% 10%, rgba(167, 139, 250, 0.12), transparent),
+    radial-gradient(ellipse 400px 300px at 50% 100%, rgba(45, 212, 191, 0.08), transparent);
+}
